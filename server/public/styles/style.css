@@ -1,0 +1,185 @@
+body {
+  margin: 100px;
+}
+
+#key, #equals {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+}
+
+#alert-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#input1 {
+  margin-right: 5px;
+}
+
+.calc-header-row {
+  width: 235px;
+  margin: 5px;
+}
+
+.input-clear-row {
+  display: flex;
+  width: 235px;
+  margin: 5px;
+}
+
+#result-value {
+  color: #e91e63;
+}
+
+.solar-power {
+  height: 30px;
+  border-radius: 18px;
+}
+
+#calc-container {
+  background: grey;
+  padding: 15px;
+  border-radius: 9px;
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+
+/* The slow way */
+.make-it-slow {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Transition to a bigger shadow on hover */
+.make-it-slow:hover {
+  box-shadow: 3px 5px 5px 1px black;
+}
+
+/* The fast way */
+.make-it-fast {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+/* Pre-render the bigger shadow, but hide it */
+.make-it-fast::after {
+  box-shadow: 3px 5px 5px 1px black;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.light-beam {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow:
+    0 0 60px 30px #fff,  /* inner white */
+    0 0 100px 60px #f0f, /* middle magenta */
+    0 0 140px 90px #0ff; /* outer cyan */
+  transition: box-shadow 0.3s ease-in-out;  
+}
+
+.light-beam:hover {
+  box-shadow:
+  0 0 60px 60px #fff,  /* inner white */
+  0 0 100px 90px #f0f, /* middle magenta */
+  0 0 140px 120px #0ff; /* outer cyan */
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Transition to showing the bigger shadow on hover */
+.make-it-fast:hover::after {
+  opacity: 1;
+}
+
+.solar-panal-highlight {
+  transition: box-shadow 400ms;
+  box-shadow: 0px 0px 13px 1px yellow;
+}
+
+strong {
+  color: #e91e63;
+  font-weight: bold;
+}
+
+#dance {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 275px;
+}
+
+#dance img {
+  width: 50px;
+}
+
+.thought {
+  visibility: hidden;
+  display:flex;
+  flex-wrap: wrap;
+  background-color:#fff;
+  color: black;
+  padding:20px;
+  border-radius:30px;
+  min-width:40px;
+  max-width:220px;
+  min-height:40px;
+  margin:20px;
+  position:relative;
+  align-items:center;
+  justify-content:center;
+  z-index: 99999;
+}
+.thought:before,
+.thought:after {
+  content:"";
+  background-color:#fff;
+  border-radius:50%;
+  display:block;
+  position:absolute;
+  z-index:-1;
+}
+.thought:before {
+  width:44px;
+  height:44px;
+  top:-12px;
+  left:28px;
+  box-shadow:-50px 30px 0 -12px #fff;
+}
+.thought:after {
+  bottom:-10px;
+  right:26px;
+  width:30px;
+  height:30px;
+  box-shadow:40px -34px 0 0 #fff,
+             -28px -6px 0 -2px #fff,
+             -24px 17px 0 -6px #fff,
+             -5px 25px 0 -10px #fff;
+  
+}
+
+.space-is-awesome {
+  background: linear-gradient(-45deg, black, rgb(44, 1, 40), #222,#222);
+  background-size: 400% 400%;
+  animation: gradient 30s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+

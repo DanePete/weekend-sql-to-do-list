@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="vendors/jquery.min.js"></script>
+  <script src="scripts/client.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <title>Weekend jQuery server calculator</title>
+</head>
+<body>
+
+  <!-- Header -->
+  <div id="header" class="header">
+    <div id="alert-container"></div>
+    <div id="moon" class="light-beam"></div>
+    <h2>Power level: <span id="number">10</span></h2>
+    <p>
+      <strong>* It's dark out... Your calculator runs off of solar - </strong>
+      <strong>hover over the moon on the right to boost your power</strong>
+    </p>
+  </div>
+
+  <!-- Manin Container -->
+  <div id="main">
+    <div id="calc-container" class="make-it-slow float-left">
+      <div class="rows calc-header-row">
+        <h4 class="float-left">Calculator</h4>
+          <div class="float-right">
+            <img class="solar-power" src="assets/34579_m.jpg">
+          </div>
+      </div>
+      <div class="rows input-clear-row">
+        <input type="text" id="input1" class="form-control">
+        <button id="clear" data-key="c" class="btn btn-primary">C</button>
+      </div>
+      <div class="rows">
+        <button id="key" data-key="7" class="btn btn-primary">7</button>
+        <button id="key" data-key="8" class="btn btn-primary">8</button>
+        <button id="key" data-key="9" class="btn btn-primary">9</button>
+        <button id="key" data-key="+" class="btn btn-primary">+</button>
+      </div>
+      <div class="rows">
+        <button id="key" data-key="4" class="btn btn-primary">4</button>
+        <button id="key" data-key="5" class="btn btn-primary">5</button>
+        <button id="key" data-key="6" class="btn btn-primary">6</button>
+        <button id="key" data-key="-" class="btn btn-primary">-</button>
+      </div>
+      <div class="rows">
+        <button id="key" data-key="1" class="btn btn-primary">1</button>
+        <button id="key" data-key="2" class="btn btn-primary">2</button>
+        <button id="key" data-key="3" class="btn btn-primary">3</button>  
+        <button id="key" data-key="*" class="btn btn-primary">*</button>
+      </div>
+      <div class="rows">
+        <button id="key" data-key="0" class="btn btn-primary">0</button>
+        <button id="key" data-key="." class="btn btn-primary">.</button>
+        <button id="equals" data-key="=" class="btn btn-primary">=</button>
+        <button id="key" data-key="/" class="btn btn-primary"d>/</button>
+      </div>
+    </div>
+    <div id="result-container" class="float-left">
+      <h2 id="result">Equation: <span id="result-equation"><i></i></span></h2>
+      <h2 id="result">Value: <span id="result-value">0</span></h2>
+    </div>
+  </div>
+
+  <!-- table to display previous equation results -->
+  <table id="results" class="table table-dark table-striped">
+    <thead class="thead-dark">
+      <th>Previous Equation</th>
+      <th>Result</th>
+      <th></th>
+      <th><button id="delete-all" class="btn btn-warning">Clear All</button></th>
+    </thead>
+    <tbody>
+      <!-- Dynamic Data -->
+    </tbody>
+  </table>
+
+  <!-- oh macarena -->
+  <div id="dance">
+    <span class="thought">
+      <div class="tought-message">
+        "The universe is a pretty big place. If it's just us, seems like an awful waste of space"
+      </div>
+      <div class="source clear">
+        - <i>Carl Sagan</i>
+      </div>
+    </span>
+    <img src="./assets/tenor.gif">
+  </div>
+
+</body>
+</html>
