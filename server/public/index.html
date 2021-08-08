@@ -12,7 +12,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <title>Weekend jQuery server calculator</title>
 </head>
 <body>
@@ -28,9 +28,15 @@
       </div>
       <div class="todo-inner-container">
         <div class="dashboard">
-          <h3>TODO: list</h3>
+          <div class="typewriter">
+            <p class="lead">
+              <i>TODO LIST:</i>
+            </p>
+          </div>
           <input type="text" id="input1" class="form-control" placeholder="Title">
+            </br>
           <textarea id="input2" class="form-control" placeholder="Enter your todo item"></textarea>
+            </br>
           <button id="clear" data-key="s" class="btn btn-primary">ADD TODO</button>
         </div>
         <div id="result-container">

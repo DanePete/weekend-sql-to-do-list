@@ -33,7 +33,7 @@ function checkIfFieldHasValue() {
  */
 function bundle() {
   let val = $("#input1").val();
-  let val2 = $("#input1").val();
+  let val2 = $("#input2").val();
 
   var currentDate = new Date()
   var day = currentDate.getDate()
@@ -106,15 +106,15 @@ function getResults() {
               </div>
               <div class="card-body">
                 <p class="card-text">
-                  ${todo.completed}<br/>
                   ${todo.notes}<br/>
-                  ${cd.toLocaleDateString('en-US')}<br/>
-                  ${ad.toLocaleDateString('en-US')}<br/> 
+
+
                 </p>
               </div>
               <div class="card-footer text-muted">
                 <button id="run-again" class="btn btn-warning">COMPLETE</button>
                 <button id="delete" class="btn btn-danger">DELETE</button>
+                ADDED: ${ad.toLocaleDateString('en-US')}<br/>
               </div>
                 <div class="trigger-container">
 

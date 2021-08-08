@@ -14,7 +14,7 @@ body {
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   box-shadow: inset 0px 0px 600px #000000;
 }
 
@@ -34,6 +34,10 @@ body {
   padding: 5px;
 }
 
+.card-body {
+  min-height: 150px;
+  color:#e91e63;
+}
 
 .card-header .badge-pill {
   position: absolute;
@@ -152,6 +156,30 @@ strong {
   }
   100% {
       background-position: 0% 50%;
+  }
+}
+
+.typewriter p i {
+  overflow: hidden;
+  border-right: .15em solid black;
+  margin: 0 auto;
+  color: black;
+  letter-spacing: .15em;
+  animation:
+    typing 3.5s steps(40, end),
+    blink-caret .90s step-end infinite;
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent
+  }
+
+  50% {
+    border-color: black;
   }
 }
 
