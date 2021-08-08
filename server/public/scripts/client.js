@@ -12,7 +12,7 @@ function onReady() {
   $(document).on('click', '#equals', checkIfFieldHasValue);
   $(document).on('click', '#delete-all', deleteAll);
   $(document).on('click', '#delete', deleteIndividualRecord);
-  $(document).on('click', '#run-again', showPreviousCalc);
+  // $(document).on('click', '#run-again', showPreviousCalc);
 
   getResults();
 }
@@ -82,19 +82,16 @@ function getResults() {
   console.log('got here');
   $.ajax({
     type: 'GET',
-    url: '/result'
+    url: '/todo'
   }).then(function (response) {
-    if(response[response.length - 1]) {
-      setValues(response[response.length - 1].equation, numberWithCommas(response[response.length - 1].value));
-    }
     $('#results').find('tbody').empty();
     for (let i = 0; i < response.length; i++) {
-        let equation = response[i];
-        console.log(equation);
+        let todo = response[i];
+        console.log(todo);
         $('#results tbody').append(`
-            <tr data-id="${i}" data-equation="${equation.equation}" data-value="${equation.value}">
-                <td>${equation.equation}</td>
-                <td>${numberWithCommas(equation.value)}</td>
+            <tr data-id="${i}" data-equation="${todo.todo}" data-value="${todo.todo}">
+                <td>${todo.todo}</td>
+                <td>${todo.todo}</td>
                 <td><button id="run-again" class="btn btn-warning">RUN AGAIN</button></td>
                 <td><button id="delete" class="btn btn-danger">DELETE</button></td>
             </tr>
@@ -142,23 +139,6 @@ function deleteIndividualRecord() {
 function clearInput() {
   inputString = '';
   $('#input1').val('');
-  setValues('',0);
-}
-
-/**
- * Show Previous Calc
- */
-function showPreviousCalc() {
-  setValues($(this).closest('tr').data('equation'), numberWithCommas($(this).closest('tr').data('value')));
-}
-
-/**
- * Set Values
- * Small reusable function to render the equation and value to the dom
- */
-function setValues(equation, value) {
-  $('#result-equation').text(equation);
-  $('#result-value').text(value);
 }
 
 /**

@@ -20,6 +20,15 @@ body {
   width: 40%;
 }
 
+.dashboard, #result-container {
+  margin: 10px;
+  flex: 1;
+}
+
+#result-container {
+  flex: 2 !important;
+}
+
 #alert-container {
   position: absolute;
   top: 0;

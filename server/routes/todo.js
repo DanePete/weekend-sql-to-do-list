@@ -3,9 +3,10 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
+    console.log('HERE!');
     let sqlQuery = `
         -- We can write any SQL we want here!
-        SELECT * FROM "songs";
+        SELECT * FROM "todo";
     `;
     pool.query(sqlQuery)
         .then((dbRes) => {
