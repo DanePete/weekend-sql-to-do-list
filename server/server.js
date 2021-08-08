@@ -13,48 +13,8 @@ app.use(express.static('server/public'));
 
 // Routes would go here
 let todo = require('./routes/todo');
-
 app.use('/todo', todo);
 
-
-/**
- * App Post
- * Retrieves the inputs from the user and pushes an object into the Bundle Calculations Array
-//  */
-// app.post('/bundle', function(request, response) {
-//   let equation = request.body;
-//   let ans = math.evaluate(equation.val)  // fix issue: 0.30000000000000004
-  
-//   bundleCalculations.push({equation: equation.val, value: math.format(ans, {precision: 14})}); // Fine... I won't use eval, but you didn't say i couldn't use mathjs :p
-//   let ok = 200;
-//   response.send(ok);
-// });
-
-// /**
-//  * App Get Result
-//  * Returns the Bundle Calculations array (a collection of equations)
-//  */
-// app.get('/result', function(request, response) {
-//   response.send(bundleCalculations);
-// });
-
-// /**
-//  * App Delete
-//  * Clears out the Bundle Calculations array
-//  */
-// app.delete('/result', function(req, response) {
-//   bundleCalculations = [];
-//   response.send(bundleCalculations);
-// });
-
-// /**
-//  * App Delete
-//  * Removes individual array items by id
-//  */
-// app.delete('/result:id', function(req, response) {
-//   bundleCalculations.splice(req.params.id, 1);
-//   response.send(bundleCalculations);
-// });
 
 /**
  * listen YO!
