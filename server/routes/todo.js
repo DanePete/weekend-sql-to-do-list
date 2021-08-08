@@ -53,12 +53,13 @@ router.post('/', (req, res) => {
  */
  router.put('/:id', (req, res) => {
     let sqlQuery = `
-      UPDATE todo SET "completed" =$1 WHERE id =$2;
+      UPDATE todo SET "completed" =$1, "completed_date" =$2  WHERE id =$3;
     `;
   
     let sqlParams = [
       req.body.transferData, // $1
-      req.params.id  // $2
+      req.body.completedDate, // $2
+      req.params.id //3
     ]
   
     pool.query(sqlQuery, sqlParams)

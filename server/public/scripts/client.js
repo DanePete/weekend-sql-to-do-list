@@ -82,7 +82,6 @@ function getResults() {
     let completed = "";
     for (let i = 0; i < response.length; i++) {
         let todo = response[i];
-
         if(todo.completed === true) {
           completed = "COMPLETED"
         } else {
@@ -90,18 +89,19 @@ function getResults() {
         }
 
         let ad = new Date(todo.date_added);
-
+        let cd = new Date(todo.completed_date);
+        
         $('#results').append(`
-            <div class="card" data-id="${todo.id}" data-value="${todo.completed}">
+            <div class="card" data-id="${todo.id}" data-value="${todo.completed}" data-prev-date="${todo.completed_date}">
               <div class="card-header">
                 <span class="badge badge-pill badge-primary">${completed}</span>
+                <span class="">${cd.toLocaleDateString('en-US')}</span>
+                
                 <h5 class="card-title">${todo.todo}</h5>
               </div>
               <div class="card-body">
                 <p class="card-text">
                   ${todo.notes}<br/>
-
-
                 </p>
               </div>
               <div class="card-footer text-muted">
@@ -126,16 +126,22 @@ function getResults() {
  function updateToDo() {
   let id = $(this).parent().parent().data('id');
   let isComplete = $(this).parent().parent().data('value');
+  let date = $(this).parent().parent().data('prev-date');
   if(isComplete === true || isComplete === null) {
     isComplete = false;
-  } else if(isComplete === false ) {
+  } else if(isComplete === false) {
     isComplete = true;
+    let currentDate = new Date();
+    let day = currentDate.getDate();
+    let month = currentDate.getMonth() + 1;
+    let year = currentDate.getFullYear();
+    date = day + "/" + month + "/" + year;
   }
 
   $.ajax({
     url: `/todo/${id}`,
     type: 'PUT',
-    data: {transferData: isComplete}
+    data: {transferData: isComplete, completedDate: date}
   }).then(function(response) {
     getResults(); 
   }).catch(function(error){
