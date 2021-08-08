@@ -51,8 +51,6 @@ function bundle() {
       val4: newDate,
       val5: newDate
     }
-
-    // ("todo", "completed", "notes", "completed_date", "date_added")
   }).then((response) => {
     console.log('POST /bundle', response);
     $('#input1').val('');
@@ -76,7 +74,6 @@ function bundle() {
  * Returns the Calculated Data back from the server
  */
 function getResults() {
-  console.log('got here');
   $.ajax({
     type: 'GET',
     url: '/todo'
@@ -87,17 +84,13 @@ function getResults() {
         let todo = response[i];
 
         if(todo.completed === true) {
-          console.log('thus');
           completed = "COMPLETED"
         } else {
-          console.log('bad news');
           completed = "IN PROGRESS"
         }
 
-        let cd = new Date(todo.completed_date);
         let ad = new Date(todo.date_added);
 
-        console.log(todo);
         $('#results').append(`
             <div class="card" data-id="${todo.id}" data-value="${todo.completed}">
               <div class="card-header">
@@ -133,7 +126,6 @@ function getResults() {
  function updateToDo() {
   let id = $(this).parent().parent().data('id');
   let isComplete = $(this).parent().parent().data('value');
-  
   if(isComplete === true || isComplete === null) {
     isComplete = false;
   } else if(isComplete === false ) {

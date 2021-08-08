@@ -52,10 +52,6 @@ router.post('/', (req, res) => {
  * Sends a put request to the server to update the completed cell and completed date for a specific record
  */
  router.put('/:id', (req, res) => {
-    // console.log('params', req.params);
-    console.log('ready param', req.body.transferData);
-    console.log('ready param id', req.params.id);
-    console.log('req body', req.body);
     let sqlQuery = `
       UPDATE todo SET "completed" =$1 WHERE id =$2;
     `;
@@ -68,18 +64,15 @@ router.post('/', (req, res) => {
     pool.query(sqlQuery, sqlParams)
       .then((dbRes) => {
           res.send(201);
-          console.log('yay');
       })
       .catch((err) => {
           console.log("post error", err);
           res.sendStatus(500);
-          console.log('nay');
       });
   });
 
 
 router.delete('/', (req, res) => {
-    console.log('got them to delete', req.params.id);
     let idToDelete = req.params.id
     let sqlQuery = 'TRUNCATE TABLE todo'
     // let sqlParams = [idToDelete]
