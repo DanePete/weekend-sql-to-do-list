@@ -7,7 +7,7 @@ let count = 10;   // This will be the current count at any given time
 let countInterval = null;
 
 function onReady() {
-  $(document).on('click','#clear', clearInput);
+  $(document).on('click','#clear', bundle);
   $(document).on('click', '#key', createInput);
   $(document).on('click', '#equals', checkIfFieldHasValue);
   $(document).on('click', '#delete-all', deleteAll);
@@ -52,10 +52,26 @@ function checkIfFieldHasValue() {
  */
 function bundle() {
   let val = $("#input1").val();
+  let val2 = $("#input1").val();
+
+  var currentDate = new Date()
+  var day = currentDate.getDate()
+  var month = currentDate.getMonth() + 1
+  var year = currentDate.getFullYear()
+  let newDate = day + "/" + month + "/" + year;
+
   $.ajax({
     method: 'POST',
-    url: '/bundle',
-    data: {val: val}
+    url: '/todo',
+    data: {
+      val: val, 
+      val2: false,
+      val3: val2,
+      val4: newDate,
+      val5: newDate
+    }
+
+    // ("todo", "completed", "notes", "completed_date", "date_added")
   }).then((response) => {
     console.log('POST /bundle', response);
   }).catch((error) => {
@@ -89,9 +105,12 @@ function getResults() {
         let todo = response[i];
         console.log(todo);
         $('#results tbody').append(`
-            <tr data-id="${i}" data-equation="${todo.todo}" data-value="${todo.todo}">
+            <tr data-id="${todo.id}" data-value="${todo.todo}">
                 <td>${todo.todo}</td>
-                <td>${todo.todo}</td>
+                <td>${todo.completed}</td>
+                <td>${todo.notes}</td>
+                <td>${todo.completed_date}</td>
+                <td>${todo.date_added}</td>
                 <td><button id="run-again" class="btn btn-warning">RUN AGAIN</button></td>
                 <td><button id="delete" class="btn btn-danger">DELETE</button></td>
             </tr>
@@ -100,13 +119,15 @@ function getResults() {
   });
 }
 
+
+
 /**
  * Delete All
  * Deletes the entire array on the server side
  */
 function deleteAll() {
   $.ajax({
-    url: '/result',
+    url: '/todo',
     type: 'DELETE',
     success: function(result) {
         // Do something with the result
@@ -124,9 +145,10 @@ function deleteAll() {
 function deleteIndividualRecord() {
   let id = $(this).closest('tr').data('id');
   $.ajax({
-    url: `/result${id}`,
+    url: `/todo/${id}`,
     type: 'DELETE',
     success: function(result) {
+      console.log('got here');
         getResults();
     }
   });

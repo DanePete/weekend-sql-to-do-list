@@ -33,21 +33,28 @@
       </div>
       <div class="todo-inner-container">
         <div class="dashboard">
-          <input type="text" id="input1" class="form-control">
-          <input type="text" id="input2" class="form-control">
-          <input type="text" id="input3" class="form-control">
+          <input type="text" id="input1" class="form-control" placeholder="Title">
+          <textarea id="input2" class="form-control" placeholder="Enter your todo item"></textarea>
           <button id="clear" data-key="s" class="btn btn-primary">ADD TODO</button>
         </div>
         <div id="result-container">
           <!-- table to display previous equation results -->
-          <table id="results" class="table table-dark table-striped">
+          <table id="results" class="table table-striped">
             <thead class="thead-dark">
-              <th>TODO Title</th>
-              <th>TODO Description</th>
+              <th>Title</th>
+              <th>Completed</th>
+              <th>Note</th>
+              <th>Completed Date</th>
+              <th>Date Added</th>
               <th></th>
               <th><button id="delete-all" class="btn btn-warning">Clear All</button></th>
             </thead>
             <tbody>
+              <td>${todo.todo}</td>
+              <td>${todo.completed}</td>
+              <td>${todo.notes}</td>
+              <td>${todo.completed_date}</td>
+              <td>${todo.date_added}</td>
               <!-- Dynamic Data -->
             </tbody>
           </table>
