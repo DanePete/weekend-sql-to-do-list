@@ -16,10 +16,8 @@ body {
   justify-content: center;
 }
 
-#key, #equals {
-  width: 50px;
-  height: 50px;
-  margin: 5px;
+#main {
+  width: 40%;
 }
 
 #alert-container {
@@ -32,35 +30,32 @@ body {
   margin-right: 5px;
 }
 
-.calc-header-row {
-  width: 235px;
-  margin: 5px;
-}
 
-.input-clear-row {
-  display: flex;
-  width: 235px;
-  margin: 5px;
-}
-
-#result-value {
-  color: #e91e63;
-}
-
-.solar-power {
-  height: 30px;
-  border-radius: 18px;
-}
-
-#calc-container {
+#todo-container {
   overflow: hidden;
   background: #fff;
-  height: 80vh;
-  width: 60%;
+  /* height: 80vh;
+  width: 60%; */
   background: linear-gradient(to right bottom,hsla(0,0%,100%,.5),hsla(0,0%,100%,.1));
   border-radius: 2rem;
   border-radius: 32px;
   box-shadow: 1px 1px 0 1px #f9f9fb, -1px 0 28px 0 rgb(34 33 81 / 1%), 28px 28px 28px 0 rgb(34 33 81 / 25%);
+}
+
+.statusBar {
+  width: 100%;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  background: rgba(8,15,173,.7607843137254902);
+  height: 25px;
+  -webkit-backdrop-filter: blur(2rem);
+  backdrop-filter: blur(2rem);
+}
+
+.todo-inner-container {
+  display: -webkit-flex;
+  display: flex;
+  padding: 15px;
 }
 
 /* The slow way */
@@ -72,51 +67,6 @@ body {
 /* Transition to a bigger shadow on hover */
 .make-it-slow:hover {
   box-shadow: 3px 5px 5px 1px black;
-}
-
-/* The fast way */
-.make-it-fast {
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
-}
-
-/* Pre-render the bigger shadow, but hide it */
-.make-it-fast::after {
-  box-shadow: 3px 5px 5px 1px black;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.light-beam {
-  position: absolute;
-  top: 20px;
-  right: 15px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #fff;
-  box-shadow:
-    0 0 60px 30px #fff,  /* inner white */
-    0 0 100px 60px #f0f, /* middle magenta */
-    0 0 140px 90px #0ff; /* outer cyan */
-  transition: box-shadow 0.3s ease-in-out;  
-}
-
-.light-beam:hover {
-  box-shadow:
-  0 0 60px 60px #fff,  /* inner white */
-  0 0 100px 90px #f0f, /* middle magenta */
-  0 0 140px 120px #0ff; /* outer cyan */
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-/* Transition to showing the bigger shadow on hover */
-.make-it-fast:hover::after {
-  opacity: 1;
-}
-
-.solar-panal-highlight {
-  transition: box-shadow 400ms;
-  box-shadow: 0px 0px 13px 1px yellow;
 }
 
 strong {
@@ -134,58 +84,6 @@ strong {
 #dance img {
   width: 50px;
 }
-
-.thought {
-  visibility: hidden;
-  display:flex;
-  flex-wrap: wrap;
-  background-color:#fff;
-  color: black;
-  padding:20px;
-  border-radius:30px;
-  min-width:40px;
-  max-width:220px;
-  min-height:40px;
-  margin:20px;
-  position:relative;
-  align-items:center;
-  justify-content:center;
-  z-index: 99999;
-}
-.thought:before,
-.thought:after {
-  content:"";
-  background-color:#fff;
-  border-radius:50%;
-  display:block;
-  position:absolute;
-  z-index:-1;
-}
-.thought:before {
-  width:44px;
-  height:44px;
-  top:-12px;
-  left:28px;
-  box-shadow:-50px 30px 0 -12px #fff;
-}
-.thought:after {
-  bottom:-10px;
-  right:26px;
-  width:30px;
-  height:30px;
-  box-shadow:40px -34px 0 0 #fff,
-             -28px -6px 0 -2px #fff,
-             -24px 17px 0 -6px #fff,
-             -5px 25px 0 -10px #fff;
-  
-}
-
-.space-is-awesome {
-  background: linear-gradient(-45deg, black, rgb(44, 1, 40), #222,#222);
-  background-size: 400% 400%;
-  animation: gradient 30s ease infinite;
-}
-
 
 @keyframes gradient {
   0% {

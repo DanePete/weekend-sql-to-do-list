@@ -14,23 +14,6 @@ function onReady() {
   $(document).on('click', '#delete', deleteIndividualRecord);
   $(document).on('click', '#run-again', showPreviousCalc);
 
-  powerDrain(); // Start the power drain countdown
-
-  // mouse enter moon
-  $( "#moon" ).mouseover(function() {
-    clearInterval(countInterval);
-    $('.thought').css('visibility','visible').hide().fadeIn(4000);
-    $('body').addClass('space-is-awesome');
-    powerUp();
-  });
-
-  // mouse leave moon
-  $( "#moon" ).mouseleave(function() {
-    clearInterval(countInterval);
-    $('.solar-power').removeClass('solar-panal-highlight');
-    powerDrain();
-  });
-
   getResults();
 }
 
@@ -96,6 +79,7 @@ function bundle() {
  * Returns the Calculated Data back from the server
  */
 function getResults() {
+  console.log('got here');
   $.ajax({
     type: 'GET',
     url: '/result'
@@ -106,6 +90,7 @@ function getResults() {
     $('#results').find('tbody').empty();
     for (let i = 0; i < response.length; i++) {
         let equation = response[i];
+        console.log(equation);
         $('#results tbody').append(`
             <tr data-id="${i}" data-equation="${equation.equation}" data-value="${equation.value}">
                 <td>${equation.equation}</td>
@@ -182,62 +167,5 @@ function setValues(equation, value) {
  */
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-/**
- * Power Drain
- * drains the calculators power
- */
-function powerDrain() {
-    countInterval = setInterval(function(){  
-      count = count -= counter;
-      if(count >= 0) {
-        $("#input1").attr('readonly', false);
-        $('.btn').prop("disabled",false);
-        $('#number').text(count);
-      } else {
-        stopInterval(countInterval);
-        $("#input1").prop('disabled', true);
-        $('.btn').prop("disabled",true);
-        $('#alert-container').prepend(`
-        <div class="error alert alert-danger alert-dismissible fade show">
-          <em>You've run out of power! Hover over the moon to boost your calculators power level</em>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      `);
-      $("body .alert:first-child").hide();
-      $("body .alert:first-child").fadeIn();
-      }
-    }, 1000);
-}
-
-/**
- * Power Up
- * Boosts the calculators power
- */
-function powerUp() {
-    countInterval = setInterval(function(){  
-      count = count += counter;
-      if(count >= -1) {
-        $(".alert").fadeOut(2000, function() { $(".alert").remove(); });
-        $('.btn').prop("disabled",false);
-        $('.solar-power').addClass('solar-panal-highlight');
-        $('#number').text(count);
-      } else {
-        stopInterval(countInterval);
-        $("#input1").attr('readonly', true);
-        $('.solar-power').removeClass('solar-panal-highlight');
-      }
-    }, 150);
-  // }
-}
-
-/**
- * Stops the interval from running
- */
-function stopInterval(countInterval) {
-  clearInterval(countInterval);
 }
 
