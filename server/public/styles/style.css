@@ -23,15 +23,26 @@ body {
   background: linear-gradient(to left top,hsla(0,0%,100%,.8),hsla(0,0%,100%,.5));
   border-radius: 1rem;
   margin: 2rem 0;
-  padding: 2rem;
   box-shadow: 6px 6px 20px hsl(0deg 0% 48% / 21%);
   box-shadow: 1px 1px 0 1px #f9f9fb, -1px 0 28px 0 rgb(34 33 81 / 1%), 28px 28px 28px 0 rgb(34 33 81 / 25%);
   -webkit-justify-content: space-between;
   justify-content: space-between;
 }
 
+.card-body, .card-header {
+  position: relative;
+  padding: 5px;
+}
+
+
+.card-header .badge-pill {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
 #main {
-  width: 40%;
+  width: 50%;
 }
 
 .dashboard {

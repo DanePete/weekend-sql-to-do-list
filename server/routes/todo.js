@@ -3,7 +3,6 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
-    console.log('HERE!');
     let sqlQuery = `
         -- We can write any SQL we want here!
         SELECT * FROM "todo" ORDER BY id DESC;
@@ -18,11 +17,9 @@ router.get('/', (req, res) => {
             console.log('sql failed', err);
             res.sendStatus(500);
         });
-    // res.send(musicLibrary);
 });
 
 router.post('/', (req, res) => {
-    console.log('req body', req.body);
     let sqlQuery = `
         -- Add a new to to the DB
         INSERT INTO "todo"
@@ -39,23 +36,46 @@ router.post('/', (req, res) => {
         req.body.val4, // $4
         req.body.val5 // $5
     ]
-     console.log('sqlQuery:', sqlQuery);
 
      pool.query(sqlQuery, sqlParams)
         .then((dbRes) => {
-            // DB is happy,
-            // We're happy
-            // Everyone's happy
-            // Don't need dbRes'
             res.send(201); // Created
         })
         .catch((err) => {
             console.log("post error", err);
             res.sendStatus(500);
         });
-    // musicLibrary.push(req.body);
-    // res.sendStatus(200);
 });
+
+/**
+ * Router PUT
+ * Sends a put request to the server to update the completed cell and completed date for a specific record
+ */
+ router.put('/:id', (req, res) => {
+    // console.log('params', req.params);
+    console.log('ready param', req.body.transferData);
+    console.log('ready param id', req.params.id);
+    console.log('req body', req.body);
+    let sqlQuery = `
+      UPDATE todo SET "completed" =$1 WHERE id =$2;
+    `;
+  
+    let sqlParams = [
+      req.body.transferData, // $1
+      req.params.id  // $2
+    ]
+  
+    pool.query(sqlQuery, sqlParams)
+      .then((dbRes) => {
+          res.send(201);
+          console.log('yay');
+      })
+      .catch((err) => {
+          console.log("post error", err);
+          res.sendStatus(500);
+          console.log('nay');
+      });
+  });
 
 
 router.delete('/', (req, res) => {
@@ -73,8 +93,6 @@ router.delete('/', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-    console.log('HERE DELETE');
-    console.log('params', req.params);
     let sqlQuery = `
       DELETE FROM todo WHERE id=$1;
     `;

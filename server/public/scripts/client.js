@@ -4,7 +4,7 @@ function onReady() {
   $(document).on('click','#clear', checkIfFieldHasValue);
   $(document).on('click', '#delete-all', deleteAll);
   $(document).on('click', '#delete', deleteIndividualRecord);
-  // $(document).on('click', '#run-again', showPreviousCalc);
+  $(document).on('click', '#run-again', updateToDo);
   getResults();
 }
 
@@ -13,7 +13,7 @@ function onReady() {
  * Simply checks if our input field has a value
  */
 function checkIfFieldHasValue() {
-  if($('#input1').val()) {
+  if($('#input1').val() && $('#input2').val()) {
     bundle();
   } else {
     $('#alert-container').hide().prepend(`
@@ -55,6 +55,9 @@ function bundle() {
     // ("todo", "completed", "notes", "completed_date", "date_added")
   }).then((response) => {
     console.log('POST /bundle', response);
+    $('#input1').val('');
+    $('#input2').val('');
+    getResults(); 
   }).catch((error) => {
     console.log('failed', error);
     $('#alert-container').prepend(`
@@ -66,9 +69,6 @@ function bundle() {
       </div>
     `);
   });
-  $('#input1').val('');
-  $('#input2').val('');
-  getResults(); 
 }
 
 /**
@@ -82,23 +82,34 @@ function getResults() {
     url: '/todo'
   }).then(function (response) {
     $('#results').empty();
+    let completed = "";
     for (let i = 0; i < response.length; i++) {
         let todo = response[i];
-        if(todo.completed) {
-          let completed = "completed: " + todo.completed;
+
+        if(todo.completed === true) {
+          console.log('thus');
+          completed = "COMPLETED"
+        } else {
+          console.log('bad news');
+          completed = "IN PROGRESS"
         }
+
+        let cd = new Date(todo.completed_date);
+        let ad = new Date(todo.date_added);
+
         console.log(todo);
         $('#results').append(`
-            <div class="card" data-id="${todo.id}" data-value="${todo.todo}">
+            <div class="card" data-id="${todo.id}" data-value="${todo.completed}">
               <div class="card-header">
+                <span class="badge badge-pill badge-primary">${completed}</span>
                 <h5 class="card-title">${todo.todo}</h5>
               </div>
               <div class="card-body">
                 <p class="card-text">
                   ${todo.completed}<br/>
                   ${todo.notes}<br/>
-                  ${todo.completed_date}<br/>
-                  ${todo.date_added}<br/> 
+                  ${cd.toLocaleDateString('en-US')}<br/>
+                  ${ad.toLocaleDateString('en-US')}<br/> 
                 </p>
               </div>
               <div class="card-footer text-muted">
@@ -114,6 +125,32 @@ function getResults() {
   });
 }
 
+/**
+ * Update todo Function
+ * Updates our completed cell in the database
+ * Updates the completed date
+ */
+ function updateToDo() {
+  let id = $(this).parent().parent().data('id');
+  let isComplete = $(this).parent().parent().data('value');
+  
+  if(isComplete === true || isComplete === null) {
+    isComplete = false;
+  } else if(isComplete === false ) {
+    isComplete = true;
+  }
+
+  $.ajax({
+    url: `/todo/${id}`,
+    type: 'PUT',
+    data: {transferData: isComplete}
+  }).then(function(response) {
+    getResults(); 
+  }).catch(function(error){
+    console.log('error in GET', error);
+  });
+
+}
 
 
 /**
