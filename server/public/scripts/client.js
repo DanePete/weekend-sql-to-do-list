@@ -1,26 +1,11 @@
 $(document).ready(onReady);
 
-let inputString = '';
-let inputArray = [];
-
 function onReady() {
   $(document).on('click','#clear', checkIfFieldHasValue);
-  $(document).on('click', '#key', createInput);
-  $(document).on('click', '#equals', checkIfFieldHasValue);
   $(document).on('click', '#delete-all', deleteAll);
   $(document).on('click', '#delete', deleteIndividualRecord);
   // $(document).on('click', '#run-again', showPreviousCalc);
   getResults();
-}
-
-/**
- * Create Input
- * This function captures the users inputs and assigns them to a string
- */
-function createInput() {
-  inputString += $(this).data('key');
-  inputArray.push($(this).data('key'));
-  $("#input1").val(inputString);
 }
 
 /**
@@ -83,7 +68,6 @@ function bundle() {
   });
   $('#input1').val('');
   $('#input2').val('');
-  inputString = ''; // Sets our input string back to empty
   getResults(); 
 }
 
@@ -165,21 +149,3 @@ function deleteIndividualRecord() {
     }
   });
 } 
-
-/**
- * Clear Input
- * Clears the input..
- */
-function clearInput() {
-  inputString = '';
-  $('#input1').val('');
-}
-
-/**
- * Convert calc value to string and add thousand markers
- * This function was yanked from the web.
- */
-function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
