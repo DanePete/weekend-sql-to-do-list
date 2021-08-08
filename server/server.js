@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { response } = require('express');
-const math = require('mathjs');
 const app = express();
 const PORT = 5000;
 let bundleCalculations = [];

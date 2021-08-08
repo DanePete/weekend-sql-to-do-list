@@ -1,5 +1,19 @@
 body {
-  margin: 100px;
+  height: 100vh;
+  background: linear-gradient(
+  -45deg
+,#325d79,#21a597,#293880,#f9a26c);
+  background-size: 400% 400%;
+  -webkit-animation: gradient 15s ease infinite;
+  animation: gradient 15s ease infinite;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
 }
 
 #key, #equals {
@@ -39,12 +53,14 @@ body {
 }
 
 #calc-container {
-  background: grey;
-  padding: 15px;
-  border-radius: 9px;
-  margin-top: 5px;
-  margin-right: 10px;
-  margin-bottom: 15px;
+  overflow: hidden;
+  background: #fff;
+  height: 80vh;
+  width: 60%;
+  background: linear-gradient(to right bottom,hsla(0,0%,100%,.5),hsla(0,0%,100%,.1));
+  border-radius: 2rem;
+  border-radius: 32px;
+  box-shadow: 1px 1px 0 1px #f9f9fb, -1px 0 28px 0 rgb(34 33 81 / 1%), 28px 28px 28px 0 rgb(34 33 81 / 25%);
 }
 
 /* The slow way */
@@ -169,6 +185,7 @@ strong {
   background-size: 400% 400%;
   animation: gradient 30s ease infinite;
 }
+
 
 @keyframes gradient {
   0% {
