@@ -10,54 +10,34 @@
   <link rel="stylesheet" href="styles/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <title>Weekend jQuery server calculator</title>
 </head>
 <body>
 
-  <!-- Header -->
-  <!-- <div id="header" class="header">
-    <div id="alert-container"></div>
-    <div id="moon" class="light-beam"></div>
-    <!-- <h2>Power level: <span id="number">10</span></h2> -->
-    <!-- <p>
-      <strong>* It's dark out... Your calculator runs off of solar - </strong>
-      <strong>hover over the moon on the right to boost your power</strong>
-    </p>
-  </div> -->
-
   <!-- Manin Container -->
   <div id="main">
+    <div id="alert-container">
+
+    </div>
     <div id="todo-container" class="">
       <div class="statusBar">
         <!-- Status Data -->
       </div>
       <div class="todo-inner-container">
         <div class="dashboard">
+          <h3>TODO: list</h3>
           <input type="text" id="input1" class="form-control" placeholder="Title">
           <textarea id="input2" class="form-control" placeholder="Enter your todo item"></textarea>
           <button id="clear" data-key="s" class="btn btn-primary">ADD TODO</button>
         </div>
         <div id="result-container">
-          <!-- table to display previous equation results -->
-          <table id="results" class="table table-striped">
-            <thead class="thead-dark">
-              <th>Title</th>
-              <th>Completed</th>
-              <th>Note</th>
-              <th>Completed Date</th>
-              <th>Date Added</th>
-              <th></th>
-              <th><button id="delete-all" class="btn btn-warning">Clear All</button></th>
-            </thead>
-            <tbody>
-              <td>${todo.todo}</td>
-              <td>${todo.completed}</td>
-              <td>${todo.notes}</td>
-              <td>${todo.completed_date}</td>
-              <td>${todo.date_added}</td>
-              <!-- Dynamic Data -->
-            </tbody>
-          </table>
+          <!-- holds the dynamic data -->
+          <div id="results">
+
+          </div>
         </div>
       </div>
     </div>

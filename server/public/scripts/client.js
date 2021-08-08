@@ -2,18 +2,14 @@ $(document).ready(onReady);
 
 let inputString = '';
 let inputArray = [];
-let counter = 1; // This will be the amount to change by
-let count = 10;   // This will be the current count at any given time
-let countInterval = null;
 
 function onReady() {
-  $(document).on('click','#clear', bundle);
+  $(document).on('click','#clear', checkIfFieldHasValue);
   $(document).on('click', '#key', createInput);
   $(document).on('click', '#equals', checkIfFieldHasValue);
   $(document).on('click', '#delete-all', deleteAll);
   $(document).on('click', '#delete', deleteIndividualRecord);
   // $(document).on('click', '#run-again', showPreviousCalc);
-
   getResults();
 }
 
@@ -86,6 +82,7 @@ function bundle() {
     `);
   });
   $('#input1').val('');
+  $('#input2').val('');
   inputString = ''; // Sets our input string back to empty
   getResults(); 
 }
@@ -100,20 +97,34 @@ function getResults() {
     type: 'GET',
     url: '/todo'
   }).then(function (response) {
-    $('#results').find('tbody').empty();
+    $('#results').empty();
     for (let i = 0; i < response.length; i++) {
         let todo = response[i];
+        if(todo.completed) {
+          let completed = "completed: " + todo.completed;
+        }
         console.log(todo);
-        $('#results tbody').append(`
-            <tr data-id="${todo.id}" data-value="${todo.todo}">
-                <td>${todo.todo}</td>
-                <td>${todo.completed}</td>
-                <td>${todo.notes}</td>
-                <td>${todo.completed_date}</td>
-                <td>${todo.date_added}</td>
-                <td><button id="run-again" class="btn btn-warning">RUN AGAIN</button></td>
-                <td><button id="delete" class="btn btn-danger">DELETE</button></td>
-            </tr>
+        $('#results').append(`
+            <div class="card" data-id="${todo.id}" data-value="${todo.todo}">
+              <div class="card-header">
+                <h5 class="card-title">${todo.todo}</h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  ${todo.completed}<br/>
+                  ${todo.notes}<br/>
+                  ${todo.completed_date}<br/>
+                  ${todo.date_added}<br/> 
+                </p>
+              </div>
+              <div class="card-footer text-muted">
+                <button id="run-again" class="btn btn-warning">COMPLETE</button>
+                <button id="delete" class="btn btn-danger">DELETE</button>
+              </div>
+                <div class="trigger-container">
+
+                </div>
+            </div>
         `);
     }
   });
@@ -143,7 +154,8 @@ function deleteAll() {
  * Sends the id of the record that the user selected to delete.
  */
 function deleteIndividualRecord() {
-  let id = $(this).closest('tr').data('id');
+  let id = $(this).parent().parent().data('id');
+  console.log('our id', id);
   $.ajax({
     url: `/todo/${id}`,
     type: 'DELETE',

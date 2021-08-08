@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     console.log('HERE!');
     let sqlQuery = `
         -- We can write any SQL we want here!
-        SELECT * FROM "todo";
+        SELECT * FROM "todo" ORDER BY id DESC;
     `;
     pool.query(sqlQuery)
         .then((dbRes) => {

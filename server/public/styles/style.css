@@ -14,19 +14,58 @@ body {
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: inset 0px 0px 600px #000000;
+}
+
+.card {
+  cursor: pointer;
+  background: linear-gradient(to left top,hsla(0,0%,100%,.8),hsla(0,0%,100%,.5));
+  border-radius: 1rem;
+  margin: 2rem 0;
+  padding: 2rem;
+  box-shadow: 6px 6px 20px hsl(0deg 0% 48% / 21%);
+  box-shadow: 1px 1px 0 1px #f9f9fb, -1px 0 28px 0 rgb(34 33 81 / 1%), 28px 28px 28px 0 rgb(34 33 81 / 25%);
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
 }
 
 #main {
   width: 40%;
 }
 
-.dashboard, #result-container {
-  margin: 10px;
-  flex: 1;
+.dashboard {
+  -webkit-flex: 1 1;
+  flex: 1 1;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-evenly;
+  justify-content: space-evenly;
+  text-align: center;
+  background: linear-gradient(to right bottom,hsla(0,0%,100%,.7),hsla(0,0%,100%,.3));
+  border-bottom-left-radius: 2rem;
+  padding: 10px;
+  position: relative;
+}
+
+#results {
+  width: 80%;
 }
 
 #result-container {
-  flex: 2 !important;
+  -webkit-flex: 2 1;
+  flex: 2 1;
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  padding: 10px;
+  overflow: scroll;
+  height: 90vh;
 }
 
 #alert-container {
@@ -64,7 +103,6 @@ body {
 .todo-inner-container {
   display: -webkit-flex;
   display: flex;
-  padding: 15px;
 }
 
 /* The slow way */
